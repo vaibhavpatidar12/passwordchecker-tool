@@ -29,6 +29,26 @@ input {
     border: 1px solid #ccc;
 }
 
+/* 👁️ Password Box */
+.password-box {
+    position: relative;
+    width: 100%;
+}
+
+.password-box input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+}
+
 button {
     padding: 10px 15px;
     background: #667eea;
