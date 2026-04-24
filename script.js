@@ -1,10 +1,8 @@
-// Wait until page loads (IMPORTANT FIX)
+// 👁️ Toggle Password
 document.addEventListener("DOMContentLoaded", function () {
-
     const togglePassword = document.getElementById("togglePassword");
     const password = document.getElementById("password");
 
-    // 👁️ Toggle password
     togglePassword.addEventListener("click", function () {
         const type = password.type === "password" ? "text" : "password";
         password.type = type;
@@ -12,37 +10,33 @@ document.addEventListener("DOMContentLoaded", function () {
         this.classList.toggle("fa-eye");
         this.classList.toggle("fa-eye-slash");
     });
-
 });
 
 
-// 🔐 Password strength
+// 🔐 Strength Check
 function checkPassword() {
     let password = document.getElementById("password").value;
-    let strengthText = document.getElementById("strength");
+    let strength = document.getElementById("strength");
 
-    let strength = 0;
-
-    if (password.length >= 8) strength++;
-    if (/[A-Z]/.test(password)) strength++;
-    if (/[0-9]/.test(password)) strength++;
-
-    if (strength === 3) {
-        strengthText.innerText = "Strong";
-    } else if (strength === 2) {
-        strengthText.innerText = "Medium";
+    if (password.length < 6) {
+        strength.innerText = "Weak";
+        strength.style.color = "#ff4d4d";
+    } else if (password.length < 10) {
+        strength.innerText = "Medium";
+        strength.style.color = "#ffc107";
     } else {
-        strengthText.innerText = "Weak";
+        strength.innerText = "Strong";
+        strength.style.color = "#4caf50";
     }
 }
 
 
-// 🔐 Generate password
+// 🔐 Generate Password
 function generatePassword() {
-    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
     let password = "";
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 12; i++) {
         password += chars[Math.floor(Math.random() * chars.length)];
     }
 
@@ -50,15 +44,14 @@ function generatePassword() {
 }
 
 
+// 📋 Copy Password
 function copyPassword() {
-    const text = document.getElementById("generatedPassword").innerText;
+    let text = document.getElementById("generatedPassword").innerText;
 
     if (!text) {
         alert("Generate password first!");
         return;
     }
 
-    navigator.clipboard.writeText(text)
-        .then(() => alert("Copied!"))
-        .catch(() => alert("Copy failed"));
+    navigator.clipboard.writeText(text);
 }
