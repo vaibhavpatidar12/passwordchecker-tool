@@ -13,15 +13,17 @@
 
 <div class="container">
 
-    <!-- 🔥 Main Heading -->
-    <h1>Password Security Tool</h1>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <h1><i class="fa-solid fa-lock"></i> Password Tool</h1>
 
-    <!-- Sub Heading -->
+        <!-- Dark Mode Toggle -->
+        <i class="fa-solid fa-moon toggle-dark" id="darkModeToggle"></i>
+    </div>
+
     <p class="subtitle">
-        Check password strength and estimate how long it would take to crack
+        Check password strength & estimate crack time
     </p>
-
-   
 
     <!-- Input -->
     <div class="input-group">
@@ -39,10 +41,8 @@
 
     <hr>
 
-    <!-- Section Title -->
     <h3 class="section-title">Generate Secure Password</h3>
 
-    <!-- Generator -->
     <button onclick="generatePassword()">Generate Password</button>
 
     <div class="generated-box">
