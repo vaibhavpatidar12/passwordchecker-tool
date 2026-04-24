@@ -16,6 +16,13 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
     border: 1px solid rgba(79, 70, 229, 0.15);
 }
+.container {
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
 /* Input Group */
 .input-group {
     position: relative;
