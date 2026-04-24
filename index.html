@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Password Tool</title>
+    <title>Password Analyzer</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,15 +14,18 @@
 <div class="container">
     <h2>Password Analyzer</h2>
 
-    <!-- Password Input -->
+    <!-- Input -->
     <div class="input-group">
         <input type="password" id="password" placeholder="Enter your password">
         <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
     </div>
 
-    <button onclick="checkPassword()">Check Strength</button>
+    <!-- Strength Bar -->
+    <div class="strength-bar">
+        <div id="strength-fill"></div>
+    </div>
 
-    <p id="strength"></p>
+    <p id="strength-text"></p>
 
     <hr>
 
