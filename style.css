@@ -27,28 +27,36 @@ h2 {
     font-weight: 600;
 }
 
-/* Input Group */
 .input-group {
     position: relative;
+    margin-bottom: 15px;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px 40px 12px 12px;
+    padding: 12px 45px 12px 12px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #ddd;
     outline: none;
     font-size: 14px;
+    transition: 0.3s;
 }
 
-/* Eye Icon */
+/* Focus effect (professional touch) */
+.input-group input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.4);
+}
+
+/* Eye icon FIX */
 .toggle-password {
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #555;
     cursor: pointer;
+    color: #666;
+    font-size: 14px;
 }
 
 /* Buttons */
