@@ -8,12 +8,13 @@ body {
     height: 100vh;
 }
 .container {
-    background: #f8fafc;
+    background: rgba(79, 70, 229, 0.08); /* soft blue tint */
+    backdrop-filter: blur(12px);
     padding: 28px;
     border-radius: 14px;
     width: 340px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-    border: 1px solid #e5e7eb;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    border: 1px solid rgba(79, 70, 229, 0.15);
 }
 /* Input Group */
 .input-group {
