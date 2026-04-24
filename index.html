@@ -10,7 +10,11 @@
 <div class="container">
     <h2>🔐 Password Strength Analyzer</h2>
 
-    <input type="password" id="password" placeholder="Enter your password">
+    <!-- Password Input with Eye Icon -->
+    <div class="password-box">
+        <input type="password" id="password" placeholder="Enter your password">
+        <span class="eye" onclick="togglePassword()">👁️</span>
+    </div>
 
     <button onclick="checkPassword()">Check Strength</button>
 
