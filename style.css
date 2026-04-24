@@ -37,7 +37,9 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
     color: #666;
-}
+    font-size: 14px;
+    z-index: 10; /* IMPORTANT */
+}}
 
 .toggle-password:hover {
     color: black;
