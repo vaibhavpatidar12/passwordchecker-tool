@@ -102,12 +102,8 @@ button:hover {
 
 .copy-icon {
     cursor: pointer;
-}
-h1 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 600;
-    color: #111827;
+h1, .subtitle, .section-title {
+    color: white;
 }
 
 .subtitle {
