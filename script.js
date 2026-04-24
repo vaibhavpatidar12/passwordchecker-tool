@@ -22,7 +22,6 @@ function checkPassword() {
     if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
     else suggestions.push("Add special character");
 
-    // Strength Result
     if (strength === 5) {
         strengthText.innerText = "Strong 💪";
         strengthText.style.color = "green";
@@ -34,7 +33,6 @@ function checkPassword() {
         strengthText.style.color = "red";
     }
 
-    // Suggestions
     suggestionsList.innerHTML = "";
     suggestions.forEach(item => {
         let li = document.createElement("li");
@@ -42,13 +40,27 @@ function checkPassword() {
         suggestionsList.appendChild(li);
     });
 
-    // Crack Time
     let crackTime = estimateCrackTime(password);
     crackTimeText.innerText = "⏳ Estimated Crack Time: " + crackTime;
 }
 
 
-// 🔐 Generate Strong Password
+// 👁️ Show/Hide Password
+function togglePassword() {
+    let input = document.getElementById("password");
+    let eye = document.querySelector(".eye");
+
+    if (input.type === "password") {
+        input.type = "text";
+        eye.innerText = "🙈";
+    } else {
+        input.type = "password";
+        eye.innerText = "👁️";
+    }
+}
+
+
+// 🔐 Generate Password
 function generatePassword() {
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
     let password = "";
@@ -61,7 +73,7 @@ function generatePassword() {
 }
 
 
-// ⏳ Crack Time Estimation (Simple Model)
+// ⏳ Crack Time
 function estimateCrackTime(password) {
     let length = password.length;
 
