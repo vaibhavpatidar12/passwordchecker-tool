@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>🔐 Password Strength Analyzer</h2>
+
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <button onclick="checkPassword()">Check Strength</button>
+
+    <p id="strength"></p>
+    <ul id="suggestions"></ul>
+
+    <!-- Crack Time -->
+    <p id="crackTime"></p>
+
+    <hr>
+
+    <!-- Password Generator -->
+    <h3>Generate Strong Password</h3>
+    <button onclick="generatePassword()">Generate Password</button>
+    <p id="generatedPassword"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
