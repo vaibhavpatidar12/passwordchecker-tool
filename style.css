@@ -1,53 +1,97 @@
+/* Background */
 body {
-    font-family: Arial;
-    background: linear-gradient(to right, #667eea, #764ba2);
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* Container */
+/* Glass Card */
 .container {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 16px;
     width: 320px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* Password Box */
-.password-box {
+/* Heading */
+h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Input Group */
+.input-group {
     position: relative;
-    width: 100%;
 }
 
-.password-box input {
+.input-group input {
     width: 100%;
-    padding: 10px 40px 10px 10px; /* space for eye */
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    padding: 12px 40px 12px 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 14px;
 }
 
-/* Eye icon FIXED */
+/* Eye Icon */
 .toggle-password {
     position: absolute;
-    top: 50%;
     right: 12px;
+    top: 50%;
     transform: translateY(-50%);
+    color: #555;
     cursor: pointer;
-    color: #666;
-    font-size: 14px;
-    z-index: 10; /* IMPORTANT */
-}}
-
-.toggle-password:hover {
-    color: black;
 }
 
-/* Generated box */
+/* Buttons */
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #4f46e5;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4338ca;
+}
+
+/* Strength Text */
+#strength {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Generated Password Box */
 .generated-box {
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.copy-icon {
+    cursor: pointer;
+}
+
+/* Divider */
+hr {
+    margin: 20px 0;
+    border: 0.5px solid rgba(255,255,255,0.3);
 }
