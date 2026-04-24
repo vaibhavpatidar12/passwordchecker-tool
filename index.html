@@ -3,33 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Password Strength Analyzer</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    <h2>🔐 Password Strength Analyzer</h2>
 
-    <!-- Password Input with Eye Icon -->
+    <!-- Dark Mode Toggle -->
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+
+    <h2>🔐 Password Analyzer</h2>
+
+    <!-- Password Box -->
     <div class="password-box">
-        <input type="password" id="password" placeholder="Enter your password">
-        <span class="eye" onclick="togglePassword()">👁️</span>
+        <input type="password" id="password" placeholder="Enter password">
+        <button type="button" class="eye" onclick="togglePassword()">
+            <i class="fa-solid fa-eye"></i>
+        </button>
     </div>
 
     <button onclick="checkPassword()">Check Strength</button>
 
+    <!-- Strength Bar -->
+    <div class="strength-bar">
+        <div id="strengthFill"></div>
+    </div>
+
     <p id="strength"></p>
     <ul id="suggestions"></ul>
-
-    <!-- Crack Time -->
     <p id="crackTime"></p>
 
     <hr>
 
-    <!-- Password Generator -->
-    <h3>Generate Strong Password</h3>
-    <button onclick="generatePassword()">Generate Password</button>
-    <p id="generatedPassword"></p>
+    <!-- Generator -->
+    <h3>Generate Password</h3>
+    <button onclick="generatePassword()">Generate</button>
+
+    <div class="generated-box">
+        <p id="generatedPassword"></p>
+        <button onclick="copyPassword()"><i class="fa-solid fa-copy"></i></button>
+    </div>
+
 </div>
 
 <script src="script.js"></script>
