@@ -8,7 +8,7 @@ body {
     height: 100vh;
 }
 
-/* Card */
+/* Container */
 .container {
     background: white;
     padding: 25px;
@@ -23,23 +23,21 @@ body {
     width: 100%;
 }
 
-/* 🔥 FIX: proper input width */
 .input-group input {
     width: 100%;
     padding: 12px 45px 12px 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 14px;
-    box-sizing: border-box; /* IMPORTANT FIX */
+    box-sizing: border-box;
 }
 
-/* Focus effect */
 .input-group input:focus {
     border-color: #4f46e5;
     outline: none;
 }
 
-/* Eye icon */
+/* Eye Icon */
 .toggle-password {
     position: absolute;
     right: 12px;
@@ -69,6 +67,11 @@ body {
 #strength-text {
     margin-top: 8px;
     font-weight: bold;
+}
+
+#crack-time {
+    font-size: 13px;
+    color: #555;
 }
 
 /* Button */
