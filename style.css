@@ -103,3 +103,21 @@ button:hover {
 .copy-icon {
     cursor: pointer;
 }
+h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 6px 0 10px;
+}
+
+.info {
+    font-size: 12px;
+    color: #10b981;
+    margin-bottom: 15px;
+}
