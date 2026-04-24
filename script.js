@@ -50,9 +50,8 @@ function generatePassword() {
 }
 
 
-// 📋 COPY FIXED
 function copyPassword() {
-    let text = document.getElementById("generatedPassword").innerText;
+    const text = document.getElementById("generatedPassword").innerText;
 
     if (!text) {
         alert("Generate password first!");
