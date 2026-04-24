@@ -5,7 +5,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
 
 /* Container */
@@ -13,13 +12,7 @@ body {
     background: white;
     padding: 25px;
     border-radius: 12px;
-    text-align: center;
     width: 320px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-h2 {
-    margin-bottom: 15px;
 }
 
 /* Password Box */
@@ -30,66 +23,29 @@ h2 {
 
 .password-box input {
     width: 100%;
-    padding: 10px 38px 10px 10px;
-    margin: 10px 0;
-    border-radius: 6px;
+    padding: 10px 40px 10px 10px; /* space for eye */
+    border-radius: 5px;
     border: 1px solid #ccc;
-    font-size: 14px;
     box-sizing: border-box;
 }
 
-/* Eye Icon */
+/* Eye icon FIXED */
 .toggle-password {
     position: absolute;
     top: 50%;
     right: 12px;
     transform: translateY(-50%);
-    color: #888;
     cursor: pointer;
-    font-size: 14px;
+    color: #666;
 }
 
 .toggle-password:hover {
-    color: #333;
+    color: black;
 }
 
-/* Button */
-button {
-    padding: 10px 15px;
-    background: #667eea;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-button:hover {
-    background: #5a67d8;
-}
-
-/* Output */
-#strength {
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-ul {
-    text-align: left;
-    padding-left: 20px;
-}
-
-h3 {
-    margin-top: 15px;
-}
-
-#generatedPassword {
-    font-weight: bold;
-    color: #333;
-    word-break: break-all;
-}
-
-#crackTime {
-    margin-top: 10px;
-    font-weight: bold;
+/* Generated box */
+.generated-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
