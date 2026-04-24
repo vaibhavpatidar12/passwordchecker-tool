@@ -12,19 +12,17 @@
 <body>
 
 <div class="container">
-    <h2>Password Tool</h2>
+    <h2>Password Analyzer</h2>
 
     <!-- Password Input -->
-    <div class="password-box">
-        <input type="password" id="password" placeholder="Enter password">
+    <div class="input-group">
+        <input type="password" id="password" placeholder="Enter your password">
         <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
     </div>
 
     <button onclick="checkPassword()">Check Strength</button>
 
     <p id="strength"></p>
-    <ul id="suggestions"></ul>
-    <p id="crackTime"></p>
 
     <hr>
 
@@ -33,12 +31,10 @@
 
     <div class="generated-box">
         <p id="generatedPassword"></p>
-        <button onclick="copyPassword()">Copy</button>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyPassword()"></i>
     </div>
 </div>
 
-<!-- JS at bottom (IMPORTANT) -->
 <script src="script.js"></script>
-
 </body>
 </html>
