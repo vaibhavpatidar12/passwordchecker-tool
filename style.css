@@ -311,4 +311,15 @@ body.dark .generated-box{
 
         font-size:24px;
     }
+    .generator-buttons{
+
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.generator-buttons button{
+
+    flex:1;
+}
 }
