@@ -279,11 +279,6 @@ body.dark .generated-box {
     letter-spacing: 0.3px;
 }
 
-/* Login button */
-button[type="submit"] {
-    margin-top: 8px;
-}
-
 /* Toast Alert Animation */
 .alert-toast {
     position: fixed;
