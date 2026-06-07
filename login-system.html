@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Login System | Working Password Generator</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff8dc, #fef3c7, #fde68a);
+    transition: background 0.4s ease;
+}
+
+body.dark {
+    background: linear-gradient(135deg, #0f0f0f, #1c1917, #292524);
+}
+
+.container {
+    width: 580px;
+    max-width: 100%;
+    padding: 35px;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+body.dark .container {
+    background: #111111;
+    color: #f0f0f0;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #d4af37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: 1.3rem;
+}
+
+.theme-toggle:hover {
+    background: #b8860b;
+    transform: scale(1.03);
+}
+
+.project-title {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.logo {
+    font-size: 68px;
+    color: #d4af37;
+    margin-bottom: 12px;
+}
+
+.project-title h2 {
+    margin-bottom: 8px;
+}
+
+.project-title p {
+    color: #6b6b76;
+}
+
+body.dark .project-title p {
+    color: #bcbcbc;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    height: 56px;
+    padding: 0 52px;
+    border-radius: 18px;
+    border: 2px solid #e2e8f0;
+    outline: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    background: #ffffff;
+}
+
+body.dark .input-group input {
+    background: #1e1e2a;
+    border-color: #3a3a44;
+    color: #f1f1f1;
+}
+
+.input-group input:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.left-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d4af37;
+    font-size: 1.1rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.toggle-password:hover {
+    color: #d4af37;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 5px 0 8px;
+}
+
+#strength-fill {
+    width: 0%;
+    height: 100%;
+    transition: width 0.25s ease;
+}
+
+#strength-text {
+    margin: 8px 0 18px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+button {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 40px;
+    background: #d4af37;
+    color: #2c2c2c;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+button:hover {
+    background: #b8860b;
+    color: white;
+    transform: translateY(-2px);
+}
+
+hr {
+    margin: 28px 0 20px;
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #e0e0e0, #d4af37, #e0e0e0);
+}
+
+body.dark hr {
+    background: linear-gradient(to right, #2a2a2a, #b8860b, #2a2a2a);
+}
+
+h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+}
+
+h3 i {
+    color: #d4af37;
+}
+
+.generator-buttons {
+    display: flex;
+    gap: 14px;
+    margin: 15px 0 12px;
+}
+
+.generator-buttons button {
+    background: #2d3748;
+    color: #f8fafc;
+    font-size: 0.85rem;
+    height: 48px;
+}
+
+.generator-buttons button:first-child {
+    background: #1f3a5f;
+}
+
+.generator-buttons button:first-child:hover {
+    background: #0f2b48;
+}
+
+.generator-buttons button:last-child:hover {
+    background: #1e2a3a;
+}
+
+.generated-box {
+    margin-top: 18px;
+    padding: 14px 18px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid #eef2f6;
+}
+
+body.dark .generated-box {
+    background: #1f1f2b;
+    border-color: #2c2c38;
+}
+
+.copy-icon {
+    cursor: pointer;
+    color: #d4af37;
+    font-size: 1.25rem;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.copy-icon:hover {
+    transform: scale(1.12);
+    background: rgba(212, 175, 55, 0.2);
+}
+
+#generatedPassword {
+    word-break: break-all;
+    font-family: monospace;
+    font-weight: 500;
+}
+
+.alert-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 60px;
+    font-size: 0.9rem;
+    z-index: 1000;
+    animation: fadeSlide 2s ease forwards;
+}
+
+@keyframes fadeSlide {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px);}
+    15% { opacity: 1; transform: translateX(-50%) translateY(0);}
+    85% { opacity: 1; transform: translateX(-50%) translateY(0);}
+    100% { opacity: 0; transform: translateX(-50%) translateY(-10px); visibility: hidden;}
+}
+
+@media (max-width: 560px) {
+    .container { padding: 25px; }
+    .generator-buttons { flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fa-solid fa-moon"></i>
+    </div>
+
+    <div class="project-title">
+        <i class="fa-solid fa-shield-halved logo"></i>
+        <h2>Secure Login System</h2>
+        <p>Password Strength Analyzer & Generator</p>
+    </div>
+
+    <form id="loginForm">
+        <div class="input-group">
+            <i class="fa-solid fa-user left-icon"></i>
+            <input type="text" id="username" placeholder="Username or Email" required>
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-lock left-icon"></i>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+        </div>
+        <div class="strength-bar">
+            <div id="strength-fill"></div>
+        </div>
+        <p id="strength-text">⚡ Password Strength</p>
+        <button type="submit">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+        </button>
+    </form>
+
+    <hr>
+
+    <h3>
+        <i class="fa-solid fa-key"></i> 
+        Smart Password Generator
+    </h3>
+
+    <div class="input-group">
+        <i class="fa-solid fa-pen left-icon"></i>
+        <input type="text" id="customWord" placeholder="Enter your name or word" autocomplete="off">
+    </div>
+
+    <div class="generator-buttons">
+        <button type="button" id="generateCustomBtn">
+            <i class="fa-regular fa-face-smile"></i> Generate From Name
+        </button>
+        <button type="button" id="generateRandomBtn">
+            <i class="fa-solid fa-shuffle"></i> Random Password
+        </button>
+    </div>
+
+    <div class="generated-box">
+        <span id="generatedPassword">✨ Click a button to generate password</span>
+        <i class="fa-solid fa-copy copy-icon" id="copyPasswordIcon"></i>
+    </div>
+</div>
+
+<script>
+// DIRECT WORKING SCRIPT - NO COMPLEXITY
+(function() {
+    console.log("Script loaded - checking elements...");
+    
+    // Get all elements
+    const generateCustomBtn = document.getElementById('generateCustomBtn');
+    const generateRandomBtn = document.getElementById('generateRandomBtn');
+    const copyIcon = document.getElementById('copyPasswordIcon');
+    const generatedPasswordSpan = document.getElementById('generatedPassword');
+    const customWordInput = document.getElementById('customWord');
+    const passwordField = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('togglePassword');
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const strengthFill = document.getElementById('strength-fill');
+    const strengthText = document.getElementById('strength-text');
+    const loginForm = document.getElementById('loginForm');
+    
+    // Check if elements exist
+    console.log("Generate Custom Button:", generateCustomBtn);
+    console.log("Generate Random Button:", generateRandomBtn);
+    console.log("Copy Icon:", copyIcon);
+    
+    // Toast function
+    function showMessage(msg, isError = false) {
+        const existing = document.querySelector('.alert-toast');
+        if(existing) existing.remove();
+        
+        const toast = document.createElement('div');
+        toast.className = 'alert-toast';
+        toast.style.background = isError ? '#dc2626' : '#1f3a5f';
+        toast.innerHTML = `<i class="fa-solid ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.remove(), 2000);
+    }
+    
+    // GENERATE CUSTOM PASSWORD
+    function generateCustomPassword() {
+        console.log("Custom password button clicked!");
+        const name = customWordInput.value.trim();
+        
+        if(name === "") {
+            showMessage("Please enter a name or word first!", true);
+            return;
+        }
+        
+        const symbols = "!@#$%^&*";
+        const num = Math.floor(1000 + Math.random() * 9000);
+        const sym1 = symbols[Math.floor(Math.random() * symbols.length)];
+        const sym2 = symbols[Math.floor(Math.random() * symbols.length)];
+        const upperName = name.charAt(0).toUpperCase() + name.slice(1);
+        
+        const password = upperName + sym1 + num + sym2;
+        
+        generatedPasswordSpan.innerText = password;
+        showMessage("✅ Custom password generated!");
+        console.log("Generated:", password);
+    }
+    
+    // GENERATE RANDOM PASSWORD
+    function generateRandomPassword() {
+        console.log("Random password button clicked!");
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+        let password = "";
+        
+        for(let i = 0; i < 14; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        
+        generatedPasswordSpan.innerText = password;
+        showMessage("🔐 Random password generated!");
+        console.log("Generated:", password);
+    }
+    
+    // COPY PASSWORD
+    async function copyPassword() {
+        const password = generatedPasswordSpan.innerText;
+        
+        if(password === "✨ Click a button to generate password") {
+            showMessage("Generate a password first!", true);
+            return;
+        }
+        
+        try {
+            await navigator.clipboard.writeText(password);
+            showMessage("📋 Password copied!");
+            
+            const originalHTML = copyIcon.innerHTML;
+            copyIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setTimeout(() => {
+                copyIcon.innerHTML = originalHTML;
+            }, 1000);
+        } catch(err) {
+            showMessage("Copy failed!", true);
+        }
+    }
+    
+    // PASSWORD STRENGTH CHECK
+    function checkStrength() {
+        const password = passwordField.value;
+        let score = 0;
+        
+        if(!password) {
+            strengthFill.style.width = '0%';
+            strengthFill.style.background = '#e2e8f0';
+            strengthText.innerHTML = '⚡ Password Strength';
+            return;
+        }
+        
+        if(password.length >= 8) score += 25;
+        if(/[A-Z]/.test(password)) score += 25;
+        if(/[0-9]/.test(password)) score += 25;
+        if(/[^A-Za-z0-9]/.test(password)) score += 25;
+        
+        strengthFill.style.width = score + '%';
+        
+        if(score <= 25) {
+            strengthFill.style.background = '#ef4444';
+            strengthText.innerHTML = '❌ Weak Password';
+        } else if(score <= 75) {
+            strengthFill.style.background = '#f97316';
+            strengthText.innerHTML = '⚠️ Medium Password';
+        } else {
+            strengthFill.style.background = '#22c55e';
+            strengthText.innerHTML = '✅ Strong Password';
+        }
+    }
+    
+    // TOGGLE PASSWORD VISIBILITY
+    function togglePassword() {
+        if(passwordField.type === "password") {
+            passwordField.type = "text";
+            togglePasswordBtn.classList.remove("fa-eye");
+            togglePasswordBtn.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            togglePasswordBtn.classList.remove("fa-eye-slash");
+            togglePasswordBtn.classList.add("fa-eye");
+        }
+    }
+    
+    // THEME TOGGLE
+    function toggleTheme() {
+        document.body.classList.toggle("dark");
+        const icon = themeToggleBtn.querySelector('i');
+        if(document.body.classList.contains("dark")) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+            localStorage.setItem('theme', 'light');
+        }
+    }
+    
+    // LOGIN HANDLER
+    function handleLogin(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = passwordField.value;
+        
+        if(!username) {
+            showMessage("Enter username!", true);
+            return;
+        }
+        if(!password) {
+            showMessage("Enter password!", true);
+            return;
+        }
+        
+        showMessage(`Welcome ${username}! Demo login successful`);
+    }
+    
+    // ATTACH EVENT LISTENERS
+    if(generateCustomBtn) {
+        generateCustomBtn.addEventListener('click', generateCustomPassword);
+        console.log("✓ Custom button listener attached");
+    }
+    
+    if(generateRandomBtn) {
+        generateRandomBtn.addEventListener('click', generateRandomPassword);
+        console.log("✓ Random button listener attached");
+    }
+    
+    if(copyIcon) {
+        copyIcon.addEventListener('click', copyPassword);
+        console.log("✓ Copy button listener attached");
+    }
+    
+    if(passwordField) {
+        passwordField.addEventListener('input', checkStrength);
+    }
+    
+    if(togglePasswordBtn) {
+        togglePasswordBtn.addEventListener('click', togglePassword);
+    }
+    
+    if(themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+    
+    if(loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
+    
+    // Load saved theme
+    if(localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+        const icon = themeToggleBtn.querySelector('i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+    
+    // Enter key support
+    if(customWordInput) {
+        customWordInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') {
+                generateCustomPassword();
+            }
+        });
+    }
+    
+    console.log("✅ All event listeners attached successfully!");
+})();
+</script>
+</body>
+</html>
