@@ -13,133 +13,204 @@ body{
     justify-content:center;
     align-items:center;
 
-    background:
-    linear-gradient(
-    135deg,
-    #0B0F19,
-    #111827,
-    #0F172A);
+    padding:20px;
 
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #111827,
+        #1e293b);
+
+    transition:.4s;
 }
+
+/* LIGHT THEME */
+
+body.light{
+
+    background:linear-gradient(
+        135deg,
+        #e2e8f0,
+        #f8fafc,
+        #cbd5e1);
+}
+
+/* CARD */
 
 .container{
 
-    width:420px;
+    width:500px;
+    max-width:100%;
 
-    background:#111827;
+    padding:40px;
 
-    border:1px solid #10B981;
+    border-radius:25px;
 
-    border-radius:20px;
+    background:rgba(17,24,39,.95);
 
-    padding:35px;
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
 
     color:white;
 
     box-shadow:
-    0 0 20px rgba(16,185,129,.35);
+    0 10px 40px rgba(0,0,0,.4);
 
+    transition:.4s;
 }
+
+body.light .container{
+
+    background:white;
+
+    color:#111827;
+
+    border:1px solid #cbd5e1;
+}
+
+/* HEADER */
 
 .project-title{
 
+    position:relative;
+
     text-align:center;
 
-    margin-bottom:25px;
+    margin-bottom:30px;
+}
+
+.theme-toggle{
+
+    position:absolute;
+
+    right:0;
+    top:0;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    color:#3b82f6;
 }
 
 .logo{
 
-    font-size:55px;
+    font-size:60px;
 
-    color:#10B981;
+    color:#3b82f6;
 
-    margin-bottom:10px;
+    margin-bottom:15px;
 }
 
 .project-title h2{
 
-    font-size:30px;
+    font-size:32px;
 
-    margin-bottom:5px;
+    margin-bottom:8px;
 }
 
 .project-title p{
 
-    color:#94A3B8;
+    color:#94a3b8;
 }
+
+/* INPUTS */
 
 .input-group{
 
     position:relative;
 
-    margin-bottom:15px;
+    margin-bottom:18px;
 }
 
 .input-group input{
 
     width:100%;
 
-    padding:14px 45px;
+    height:55px;
 
-    background:#1F2937;
+    padding-left:50px;
+    padding-right:50px;
 
-    border:2px solid #374151;
+    border-radius:14px;
 
-    border-radius:12px;
+    border:2px solid #334155;
+
+    background:#1f2937;
 
     color:white;
 
     outline:none;
+
+    transition:.3s;
+}
+
+body.light .input-group input{
+
+    background:#f8fafc;
+
+    color:#111827;
+
+    border:2px solid #cbd5e1;
 }
 
 .input-group input:focus{
 
-    border-color:#10B981;
+    border-color:#3b82f6;
 
     box-shadow:
-    0 0 10px rgba(16,185,129,.4);
+    0 0 10px rgba(59,130,246,.35);
 }
 
 .input-group input::placeholder{
 
-    color:#9CA3AF;
+    color:#9ca3af;
 }
 
-.fa-user,
+/* ICONS */
+
 .left-icon{
 
     position:absolute;
 
-    left:15px;
-    top:15px;
+    left:18px;
+    top:50%;
 
-    color:#10B981;
+    transform:translateY(-50%);
+
+    color:#3b82f6;
 }
 
 .toggle-password{
 
     position:absolute;
 
-    right:15px;
-    top:15px;
+    right:18px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#3b82f6;
 
     cursor:pointer;
-
-    color:#10B981;
 }
+
+/* STRENGTH BAR */
 
 .strength-bar{
 
+    width:100%;
+
     height:10px;
 
-    background:#374151;
+    background:#334155;
 
     border-radius:20px;
 
-    margin-top:10px;
-
     overflow:hidden;
+
+    margin-top:10px;
 }
 
 #strength-fill{
@@ -153,22 +224,26 @@ body{
 
 #strength-text{
 
-    margin-top:10px;
+    margin-top:12px;
+
+    margin-bottom:20px;
+
+    font-weight:500;
 }
+
+/* BUTTONS */
 
 button{
 
     width:100%;
 
-    margin-top:15px;
-
     padding:14px;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    background:#10B981;
+    background:#3b82f6;
 
     color:white;
 
@@ -183,8 +258,12 @@ button{
 
 button:hover{
 
-    background:#059669;
+    background:#2563eb;
+
+    transform:translateY(-2px);
 }
+
+/* DIVIDER */
 
 hr{
 
@@ -192,14 +271,16 @@ hr{
 
     height:1px;
 
-    background:#374151;
+    background:#334155;
 
-    margin:25px 0;
+    margin:30px 0;
 }
+
+/* PASSWORD BOX */
 
 h3{
 
-    margin-bottom:10px;
+    margin-bottom:15px;
 }
 
 .generated-box{
@@ -212,18 +293,50 @@ h3{
 
     align-items:center;
 
-    background:#1F2937;
+    padding:15px;
 
-    border:1px solid #374151;
+    border-radius:14px;
 
-    padding:14px;
+    background:#1f2937;
 
-    border-radius:12px;
+    border:1px solid #334155;
+}
+
+body.light .generated-box{
+
+    background:#f8fafc;
+
+    border:1px solid #cbd5e1;
 }
 
 .copy-icon{
 
     cursor:pointer;
 
-    color:#10B981;
+    color:#3b82f6;
+}
+
+#generatedPassword{
+
+    word-break:break-all;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .container{
+
+        padding:25px;
+    }
+
+    .project-title h2{
+
+        font-size:26px;
+    }
+
+    .logo{
+
+        font-size:50px;
+    }
 }
