@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeToggle =
         document.getElementById("themeToggle");
 
-    /* SHOW / HIDE PASSWORD */
+    /* SHOW PASSWORD */
 
     togglePassword.addEventListener("click", () => {
 
@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
         checkPassword
     );
 
-    /* THEME TOGGLE */
+    /* THEME SWITCH */
 
     themeToggle.addEventListener("click", () => {
 
-        document.body.classList.toggle("light");
+        document.body.classList.toggle("dark");
 
-        if(document.body.classList.contains("light")){
+        if(document.body.classList.contains("dark")){
 
             themeToggle.classList.remove("fa-moon");
             themeToggle.classList.add("fa-sun");
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             themeToggle.classList.remove("fa-sun");
             themeToggle.classList.add("fa-moon");
         }
+
     });
 
 });
@@ -63,13 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function checkPassword(){
 
-    let password =
+    const password =
         document.getElementById("password").value;
 
-    let fill =
+    const fill =
         document.getElementById("strength-fill");
 
-    let text =
+    const text =
         document.getElementById("strength-text");
 
     let score = 0;
@@ -106,12 +107,10 @@ function generatePassword(){
 
     let password = "";
 
-    for(let i = 0; i < 12; i++){
+    for(let i=0;i<12;i++){
 
         password += chars.charAt(
-            Math.floor(
-                Math.random() * chars.length
-            )
+            Math.floor(Math.random()*chars.length)
         );
     }
 
