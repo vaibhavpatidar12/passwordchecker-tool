@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const passwordInput =
-        document.getElementById("password");
+    document.getElementById("password");
 
     const togglePassword =
-        document.getElementById("togglePassword");
+    document.getElementById("togglePassword");
 
     const themeToggle =
-        document.getElementById("themeToggle");
+    document.getElementById("themeToggle");
 
-    /* SHOW PASSWORD */
+    /* Show Password */
 
     togglePassword.addEventListener("click", () => {
 
@@ -31,16 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 "fa-eye"
             );
         }
+
     });
 
-    /* PASSWORD STRENGTH */
+    /* Password Strength */
 
     passwordInput.addEventListener(
         "input",
         checkPassword
     );
 
-    /* THEME SWITCH */
+    /* Theme Toggle */
 
     themeToggle.addEventListener("click", () => {
 
@@ -61,17 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
 function checkPassword(){
 
     const password =
-        document.getElementById("password").value;
+    document.getElementById("password").value;
 
     const fill =
-        document.getElementById("strength-fill");
+    document.getElementById("strength-fill");
 
     const text =
-        document.getElementById("strength-text");
+    document.getElementById("strength-text");
 
     let score = 0;
 
@@ -84,34 +84,71 @@ function checkPassword(){
 
     if(score <= 25){
 
-        fill.style.background = "#ef4444";
+        fill.style.background = "red";
         text.innerHTML = "Password Strength: Weak";
 
     }else if(score <= 75){
 
-        fill.style.background = "#f59e0b";
+        fill.style.background = "orange";
         text.innerHTML = "Password Strength: Medium";
 
     }else{
 
-        fill.style.background = "#22c55e";
+        fill.style.background = "green";
         text.innerHTML = "Password Strength: Strong";
     }
-}
 
+}
 
 function generatePassword(){
 
-    const chars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+    const word =
+    document.getElementById("customWord")
+    .value.trim();
+
+    const type =
+    document.getElementById("passwordType")
+    .value;
+
+    const special =
+    "!@#$%^&*";
+
+    const randomNum =
+    Math.floor(100 + Math.random()*900);
+
+    const randomChar =
+    String.fromCharCode(
+        65 + Math.floor(Math.random()*26)
+    );
 
     let password = "";
 
-    for(let i=0;i<12;i++){
+    if(type === "easy"){
 
-        password += chars.charAt(
-            Math.floor(Math.random()*chars.length)
-        );
+        password =
+        (word || "User") +
+        randomNum;
+
+    }
+
+    else if(type === "strong"){
+
+        password =
+        (word || "User") +
+        special[Math.floor(Math.random()*special.length)] +
+        randomNum;
+
+    }
+
+    else{
+
+        password =
+        (word || "User") +
+        special[Math.floor(Math.random()*special.length)] +
+        randomNum +
+        randomChar +
+        special[Math.floor(Math.random()*special.length)];
+
     }
 
     document.getElementById(
@@ -119,15 +156,16 @@ function generatePassword(){
     ).innerText = password;
 }
 
-
 function copyPassword(){
 
     const password =
-        document.getElementById(
-            "generatedPassword"
-        ).innerText;
+    document.getElementById(
+        "generatedPassword"
+    ).innerText;
 
-    navigator.clipboard.writeText(password);
+    navigator.clipboard.writeText(
+        password
+    );
 
-    alert("Password copied successfully!");
+    alert("Password Copied!");
 }
