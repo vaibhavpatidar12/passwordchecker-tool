@@ -1,107 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Login System</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Secure Login System</title>
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="theme-toggle">
-            <i class="fa-solid fa-moon" id="themeToggle"></i>
-        </div>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <i class="fa-solid fa-moon" id="themeToggle"></i>
+    </div>
 
-        <div class="project-title">
+    <!-- Header -->
+    <div class="project-title">
 
-            <i class="fa-solid fa-shield-halved logo"></i>
+        <i class="fa-solid fa-shield-halved logo"></i>
 
-            <h2>Secure Login System</h2>
+        <h2>Secure Login System</h2>
 
-            <p>Password Strength Analyzer & Generator</p>
-
-        </div>
-
-        <form>
-
-            <div class="input-group">
-
-                <i class="fa-solid fa-user left-icon"></i>
-
-                <input
-                    type="text"
-                    placeholder="Username or Email"
-                    required>
-
-            </div>
-
-            <div class="input-group">
-
-                <i class="fa-solid fa-lock left-icon"></i>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter Password"
-                    required>
-
-                <i class="fa-solid fa-eye toggle-password"
-                    id="togglePassword"></i>
-
-            </div>
-
-            <div class="strength-bar">
-                <div id="strength-fill"></div>
-            </div>
-
-            <p id="strength-text">
-                Password Strength
-            </p>
-
-            <button type="submit">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                Login
-            </button>
-
-        </form>
-
-        <hr>
-
-        <h3>
-            <i class="fa-solid fa-key"></i>
-            Generate Strong Password
-        </h3>
-
-        <button
-            type="button"
-            onclick="generatePassword()">
-
-            Generate Password
-
-        </button>
-
-        <div class="generated-box">
-
-            <span id="generatedPassword">
-                Your password will appear here
-            </span>
-
-            <i class="fa-solid fa-copy copy-icon"
-                onclick="copyPassword()"></i>
-
-        </div>
+        <p>Password Strength Analyzer & Generator</p>
 
     </div>
 
-    <script src="script.js"></script>
+    <!-- Login Form -->
+    <form>
+
+        <div class="input-group">
+
+            <i class="fa-solid fa-user left-icon"></i>
+
+            <input
+            type="text"
+            placeholder="Username or Email"
+            required>
+
+        </div>
+
+        <div class="input-group">
+
+            <i class="fa-solid fa-lock left-icon"></i>
+
+            <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            required>
+
+            <i class="fa-solid fa-eye toggle-password"
+            id="togglePassword"></i>
+
+        </div>
+
+        <!-- Strength Bar -->
+
+        <div class="strength-bar">
+            <div id="strength-fill"></div>
+        </div>
+
+        <p id="strength-text">Password Strength</p>
+
+        <button type="submit">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
+        </button>
+
+    </form>
+
+    <hr>
+
+    <h3>
+        <i class="fa-solid fa-key"></i>
+        Smart Password Generator
+    </h3>
+
+    <!-- Custom Word -->
+
+    <div class="input-group">
+
+        <i class="fa-solid fa-pen left-icon"></i>
+
+        <input
+        type="text"
+        id="customWord"
+        placeholder="Enter a word (optional)">
+
+    </div>
+
+    <!-- Password Type -->
+
+    <select id="passwordType">
+
+        <option value="easy">
+            Easy Password
+        </option>
+
+        <option value="strong">
+            Strong Password
+        </option>
+
+        <option value="ultra">
+            Ultra Secure Password
+        </option>
+
+    </select>
+
+    <button
+    type="button"
+    onclick="generatePassword()">
+
+        Generate Password
+
+    </button>
+
+    <div class="generated-box">
+
+        <span id="generatedPassword">
+            Your generated password will appear here
+        </span>
+
+        <i class="fa-solid fa-copy copy-icon"
+        onclick="copyPassword()"></i>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
