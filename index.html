@@ -2,100 +2,107 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login System</title>
 
-<title>Secure Login System</title>
+    <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <div class="project-title">
+        <div class="project-title">
 
-        <i class="fa-solid fa-shield-halved logo"></i>
+            <div class="theme-toggle">
+                <i class="fa-solid fa-moon" id="themeToggle"></i>
+            </div>
 
-        <h2>Secure Login System</h2>
+            <i class="fa-solid fa-shield-halved logo"></i>
 
-        <p>Password Security Analyzer</p>
+            <h2>Secure Login System</h2>
 
-    </div>
-
-    <form>
-
-        <div class="input-group">
-
-            <i class="fa-solid fa-user"></i>
-
-            <input
-            type="text"
-            placeholder="Username or Email"
-            required>
+            <p>Real-Time Password Security Analyzer</p>
 
         </div>
 
-        <div class="input-group">
+        <form>
 
-            <i class="fa-solid fa-lock left-icon"></i>
+            <div class="input-group">
 
-            <input
-            type="password"
-            id="password"
-            placeholder="Enter Password"
-            required>
+                <i class="fa-solid fa-user left-icon"></i>
 
-            <i class="fa-solid fa-eye toggle-password"
-            id="togglePassword"></i>
+                <input
+                    type="text"
+                    placeholder="Username or Email"
+                    required>
 
-        </div>
+            </div>
 
-        <div class="strength-bar">
-            <div id="strength-fill"></div>
-        </div>
+            <div class="input-group">
 
-        <p id="strength-text">Password Strength</p>
+                <i class="fa-solid fa-lock left-icon"></i>
 
-        <button type="submit">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            Login
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required>
+
+                <i class="fa-solid fa-eye toggle-password"
+                    id="togglePassword"></i>
+
+            </div>
+
+            <div class="strength-bar">
+                <div id="strength-fill"></div>
+            </div>
+
+            <p id="strength-text">
+                Password Strength
+            </p>
+
+            <button type="submit">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Secure Login
+            </button>
+
+        </form>
+
+        <hr>
+
+        <h3>
+            <i class="fa-solid fa-key"></i>
+            Generate Strong Password
+        </h3>
+
+        <button
+            type="button"
+            onclick="generatePassword()">
+
+            Generate Password
+
         </button>
 
-    </form>
+        <div class="generated-box">
 
-    <hr>
+            <span id="generatedPassword">
+                Your Password Will Appear Here
+            </span>
 
-    <h3>Generate Strong Password</h3>
+            <i class="fa-solid fa-copy copy-icon"
+                onclick="copyPassword()"></i>
 
-    <button
-    type="button"
-    onclick="generatePassword()">
-
-        <i class="fa-solid fa-key"></i>
-        Generate Password
-
-    </button>
-
-    <div class="generated-box">
-
-        <span id="generatedPassword">
-            Generated Password
-        </span>
-
-        <i class="fa-solid fa-copy copy-icon"
-        onclick="copyPassword()"></i>
+        </div>
 
     </div>
 
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
