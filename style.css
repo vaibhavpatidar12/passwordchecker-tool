@@ -192,27 +192,7 @@ body.dark .input-group input{
 
 /* SELECT */
 
-select{
 
-    width:100%;
-
-    height:50px;
-
-    margin-bottom:15px;
-
-    border-radius:12px;
-
-    border:2px solid #ddd;
-
-    padding:10px;
-}
-
-body.dark select{
-
-    background:#222;
-    color:white;
-    border:2px solid #444;
-}
 
 /* STRENGTH BAR */
 
