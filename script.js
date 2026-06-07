@@ -99,62 +99,68 @@ function checkPassword(){
     }
 
 }
+function generateCustomPassword(){
 
-function generatePassword(){
-
-    const word =
+    const name =
     document.getElementById("customWord")
     .value.trim();
 
-    const type =
-    document.getElementById("passwordType")
-    .value;
+    if(name === ""){
 
-    const special =
+        alert("Please enter a name or word first.");
+        return;
+    }
+
+    const symbols =
     "!@#$%^&*";
 
-    const randomNum =
-    Math.floor(100 + Math.random()*900);
-
-    const randomChar =
-    String.fromCharCode(
-        65 + Math.floor(Math.random()*26)
+    const randomNumber =
+    Math.floor(
+        1000 + Math.random() * 9000
     );
+
+    const randomSymbol =
+    symbols[
+        Math.floor(
+            Math.random() *
+            symbols.length
+        )
+    ];
+
+    const password =
+    name +
+    randomSymbol +
+    randomNumber +
+    "#";
+
+    document.getElementById(
+        "generatedPassword"
+    ).innerText = password;
+}
+
+
+function generateRandomPassword(){
+
+    const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
 
     let password = "";
 
-    if(type === "easy"){
+    for(let i = 0; i < 14; i++){
 
-        password =
-        (word || "User") +
-        randomNum;
-
-    }
-
-    else if(type === "strong"){
-
-        password =
-        (word || "User") +
-        special[Math.floor(Math.random()*special.length)] +
-        randomNum;
-
-    }
-
-    else{
-
-        password =
-        (word || "User") +
-        special[Math.floor(Math.random()*special.length)] +
-        randomNum +
-        randomChar +
-        special[Math.floor(Math.random()*special.length)];
-
+        password += chars.charAt(
+            Math.floor(
+                Math.random() *
+                chars.length
+            )
+        );
     }
 
     document.getElementById(
         "generatedPassword"
     ).innerText = password;
 }
+
 
 function copyPassword(){
 
@@ -163,9 +169,8 @@ function copyPassword(){
         "generatedPassword"
     ).innerText;
 
-    navigator.clipboard.writeText(
-        password
-    );
+    navigator.clipboard.writeText(password);
+
 
     alert("Password Copied!");
 }
