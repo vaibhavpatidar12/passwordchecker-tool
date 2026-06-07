@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const strengthText = document.getElementById('strength-text');
     const loginForm = document.getElementById('loginForm');
     
-    // Generator elements
+    // Generator elements - FIXED: Make sure these exist
     const customWordInput = document.getElementById('customWord');
     const generateCustomBtn = document.getElementById('generateCustomBtn');
     const generateRandomBtn = document.getElementById('generateRandomBtn');
     const generatedPasswordSpan = document.getElementById('generatedPassword');
     const copyIcon = document.getElementById('copyPasswordIcon');
 
-    // Helper: Custom toast notification (replaces annoying alert)
+    // Helper: Custom toast notification
     function showToastMessage(message, isError = false) {
         const existingToast = document.querySelector('.alert-toast');
         if(existingToast) existingToast.remove();
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2200);
     }
 
-    // ----- PASSWORD STRENGTH CHECKER (Enhanced) -----
+    // ----- PASSWORD STRENGTH CHECKER -----
     function checkPasswordStrength() {
         const password = passwordField.value;
         let score = 0;
@@ -78,202 +78,188 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ----- IMPROVED PASSWORD GENERATORS -----
-    
-    // Generate from custom word with leet transformations
-    function generateCustomPassword() {
-        let baseWord = customWordInput.value.trim();
-        if(baseWord === "") {
-            showToastMessage("Please enter a name or keyword first 🌟", true);
+    // ----- GENERATE FROM CUSTOM WORD (FIXED) -----
+    window.generateCustomPassword = function() {
+        console.log("generateCustomPassword called"); // Debug log
+        
+        const nameInput = document.getElementById('customWord');
+        if(!nameInput) {
+            console.error("customWord input not found!");
             return;
         }
         
-        // Leet speak transformations for variety
-        const leetMap = {
-            'a': '@', 'e': '3', 'i': '1', 'o': '0', 's': '$', 't': '7', 'b': '8', 'g': '9'
-        };
+        const name = nameInput.value.trim();
         
-        let transformed = "";
-        for(let ch of baseWord) {
-            let lowerCh = ch.toLowerCase();
-            if(leetMap[lowerCh] && Math.random() > 0.5) {
-                transformed += leetMap[lowerCh];
-            } else {
-                transformed += ch;
-            }
-        }
-        
-        if(transformed === baseWord && baseWord.length > 2) {
-            transformed = baseWord.charAt(0).toUpperCase() + baseWord.slice(1);
-        }
-        
-        const symbols = "!@#$%&*?_-+=";
-        const randomSymbol1 = symbols[Math.floor(Math.random() * symbols.length)];
-        const randomSymbol2 = symbols[Math.floor(Math.random() * symbols.length)];
-        const randomNum = Math.floor(100 + Math.random() * 9900);
-        const randomUpper = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-        
-        let finalPassword = transformed + randomSymbol1 + randomNum + randomSymbol2 + randomUpper;
-        
-        if(finalPassword.length < 10) {
-            finalPassword += Math.floor(Math.random() * 1000);
-        }
-        
-        generatedPasswordSpan.innerText = finalPassword;
-        showToastMessage("✅ Custom password generated!", false);
-    }
-    
-    // Generate cryptographically strong random password
-    function generateRandomPassword() {
-        const upperCase = "ABCDEFGHJKLMNPQRSTUVWXYZ";
-        const lowerCase = "abcdefghijkmnopqrstuvwxyz";
-        const digits = "23456789";
-        const special = "!@#$%&*?_-+=";
-        
-        let passwordArray = [];
-        passwordArray.push(upperCase[Math.floor(Math.random() * upperCase.length)]);
-        passwordArray.push(lowerCase[Math.floor(Math.random() * lowerCase.length)]);
-        passwordArray.push(digits[Math.floor(Math.random() * digits.length)]);
-        passwordArray.push(special[Math.floor(Math.random() * special.length)]);
-        
-        const allAllowed = upperCase + lowerCase + digits + special;
-        const remainingLength = 12 + Math.floor(Math.random() * 5);
-        
-        for(let i = passwordArray.length; i < remainingLength; i++) {
-            passwordArray.push(allAllowed[Math.floor(Math.random() * allAllowed.length)]);
-        }
-        
-        // Fisher-Yates shuffle
-        for(let i = passwordArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]];
-        }
-        
-        const strongPassword = passwordArray.join('');
-        generatedPasswordSpan.innerText = strongPassword;
-        showToastMessage("🔐 Strong random password created!", false);
-    }
-    
-    // Copy to clipboard with visual feedback
-    async function copyPasswordToClipboard() {
-        const passwordText = generatedPasswordSpan.innerText;
-        if(!passwordText || passwordText === "✨ Click a button to generate password") {
-            showToastMessage("No password to copy — generate one first!", true);
+        if(name === "") {
+            showToastMessage("Please enter a name or word first!", true);
             return;
         }
+
+        const symbols = "!@#$%^&*";
+        const randomNumber = Math.floor(1000 + Math.random() * 9000);
+        const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
         
-        try {
-            await navigator.clipboard.writeText(passwordText);
-            showToastMessage("📋 Password copied to clipboard!", false);
-            
-            const originalIcon = copyIcon.innerHTML;
-            copyIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
-            setTimeout(() => {
-                copyIcon.innerHTML = originalIcon;
-            }, 800);
-        } catch(err) {
-            showToastMessage("Copy failed, please select manually", true);
-        }
-    }
-    
-    // Theme management with localStorage
-    function initTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = savedTheme === 'dark' || (savedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        // Create a more complex password
+        const password = name.charAt(0).toUpperCase() + name.slice(1) + randomSymbol + randomNumber + symbols[Math.floor(Math.random() * symbols.length)];
         
-        if(prefersDark) {
-            document.body.classList.add('dark');
-            const themeIcon = themeToggleBtn.querySelector('i');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
+        const generatedPasswordSpan = document.getElementById('generatedPassword');
+        if(generatedPasswordSpan) {
+            generatedPasswordSpan.innerText = password;
+            showToastMessage("Custom password generated successfully!", false);
         } else {
-            document.body.classList.remove('dark');
-            const themeIcon = themeToggleBtn.querySelector('i');
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
+            console.error("generatedPassword span not found!");
         }
     }
-    
-    function toggleTheme() {
-        document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        const themeIcon = themeToggleBtn.querySelector('i');
+
+    // ----- GENERATE RANDOM PASSWORD (FIXED) -----
+    window.generateRandomPassword = function() {
+        console.log("generateRandomPassword called"); // Debug log
         
-        if(isDark) {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+        let password = "";
+
+        for(let i = 0; i < 14; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        
+        const generatedPasswordSpan = document.getElementById('generatedPassword');
+        if(generatedPasswordSpan) {
+            generatedPasswordSpan.innerText = password;
+            showToastMessage("Random strong password generated!", false);
+        } else {
+            console.error("generatedPassword span not found!");
+        }
+    }
+
+    // ----- COPY PASSWORD (FIXED) -----
+    window.copyPassword = function() {
+        console.log("copyPassword called"); // Debug log
+        
+        const generatedPasswordSpan = document.getElementById('generatedPassword');
+        if(!generatedPasswordSpan) {
+            console.error("generatedPassword span not found!");
+            return;
+        }
+        
+        const password = generatedPasswordSpan.innerText;
+        
+        if(password === "Generated Password Appears Here" || password === "✨ Click a button to generate password") {
+            showToastMessage("Nothing to copy! Generate a password first.", true);
+            return;
+        }
+        
+        navigator.clipboard.writeText(password).then(() => {
+            showToastMessage("Password copied to clipboard!", false);
+        }).catch(() => {
+            showToastMessage("Failed to copy password!", true);
+        });
+    }
+
+    // ----- TOGGLE PASSWORD VISIBILITY -----
+    window.togglePasswordField = function() {
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = document.getElementById('togglePassword');
+        
+        if(passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+        }
+    }
+
+    // ----- THEME TOGGLE -----
+    window.toggleThemeMode = function() {
+        document.body.classList.toggle("dark");
+        const themeIcon = document.getElementById('themeToggle');
+        
+        if(document.body.classList.contains("dark")) {
+            themeIcon.classList.remove("fa-moon");
+            themeIcon.classList.add("fa-sun");
             localStorage.setItem('theme', 'dark');
         } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
+            themeIcon.classList.remove("fa-sun");
+            themeIcon.classList.add("fa-moon");
             localStorage.setItem('theme', 'light');
         }
     }
-    
-    // Toggle password visibility
-    function togglePasswordVisibility() {
-        const type = passwordField.type === 'password' ? 'text' : 'password';
-        passwordField.type = type;
-        const icon = togglePwBtn;
+
+    // ----- LOGIN HANDLER -----
+    window.handleLogin = function(event) {
+        event.preventDefault();
         
-        if(type === 'text') {
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    }
-    
-    // Login handler (demo)
-    function handleLogin(e) {
-        e.preventDefault();
-        const username = document.getElementById('username').value.trim();
-        const password = passwordField.value;
+        const username = document.querySelector('#loginForm input[type="text"]')?.value;
+        const password = document.getElementById('password')?.value;
         
-        if(!username) {
-            showToastMessage("Please enter username/email", true);
-            return;
-        }
-        if(!password) {
-            showToastMessage("Please enter your password", true);
+        if(!username || username.trim() === "") {
+            showToastMessage("Please enter username or email", true);
             return;
         }
         
-        let strengthMsg = "";
-        const currentStrength = parseInt(strengthFill.style.width);
-        
-        if(currentStrength <= 30) {
-            strengthMsg = "⚠️ Weak password! Consider using our generator.";
-        } else if(currentStrength <= 65) {
-            strengthMsg = "🔐 Password medium strength, but accepted for demo.";
-        } else {
-            strengthMsg = "✅ Strong password! Secure login demo.";
+        if(!password || password.trim() === "") {
+            showToastMessage("Please enter password", true);
+            return;
         }
         
-        showToastMessage(`Welcome ${username}! ${strengthMsg}`, false);
+        showToastMessage(`Welcome ${username}! Login successful (demo)`, false);
     }
 
-    // ----- EVENT LISTENERS -----
-    passwordField.addEventListener('input', checkPasswordStrength);
-    togglePwBtn.addEventListener('click', togglePasswordVisibility);
-    themeToggleBtn.addEventListener('click', toggleTheme);
-    loginForm.addEventListener('submit', handleLogin);
-    
-    // Generator buttons
-    generateCustomBtn.addEventListener('click', generateCustomPassword);
-    generateRandomBtn.addEventListener('click', generateRandomPassword);
-    copyIcon.addEventListener('click', copyPasswordToClipboard);
-    
-    // Enter key on custom word field triggers generation
-    customWordInput.addEventListener('keypress', (e) => {
-        if(e.key === 'Enter') {
-            e.preventDefault();
-            generateCustomPassword();
+    // ----- SETUP EVENT LISTENERS -----
+    function setupEventListeners() {
+        // Password strength checker
+        if(passwordField) {
+            passwordField.addEventListener('input', checkPasswordStrength);
         }
-    });
-    
-    // Initialize everything
-    checkPasswordStrength();
+        
+        // Toggle password visibility
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        if(togglePasswordBtn) {
+            togglePasswordBtn.addEventListener('click', window.togglePasswordField);
+        }
+        
+        // Theme toggle
+        if(themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', window.toggleThemeMode);
+        }
+        
+        // Login form
+        if(loginForm) {
+            loginForm.addEventListener('submit', window.handleLogin);
+        }
+        
+        // Generator buttons - Using onclick attributes (most reliable)
+        // The buttons already have onclick in HTML, so we don't need to add listeners
+        // But let's ensure the functions are globally available (they are with window.)
+        
+        console.log("Event listeners setup complete");
+        console.log("Generate Custom Button exists:", !!document.querySelector('[onclick="generateCustomPassword()"]'));
+        console.log("Generate Random Button exists:", !!document.querySelector('[onclick="generateRandomPassword()"]'));
+    }
+
+    // Initialize theme from localStorage
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if(savedTheme === 'dark') {
+            document.body.classList.add('dark');
+            const themeIcon = document.getElementById('themeToggle');
+            if(themeIcon) {
+                themeIcon.classList.remove("fa-moon");
+                themeIcon.classList.add("fa-sun");
+            }
+        }
+    }
+
+    // Run initialization
     initTheme();
+    setupEventListeners();
+    
+    // Initial strength check
+    if(passwordField) {
+        checkPasswordStrength();
+    }
+    
+    console.log("Script loaded successfully!");
 });
