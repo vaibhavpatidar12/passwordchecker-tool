@@ -79,40 +79,51 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     <hr>
 
     <h3>
-        <i class="fa-solid fa-key"></i>
-        Smart Password Generator
-    </h3>
+    <i class="fa-solid fa-key"></i>
+    Smart Password Generator
+</h3>
 
-    <!-- Custom Word -->
+<div class="input-group">
 
-    <div class="input-group">
+    <i class="fa-solid fa-user left-icon"></i>
 
-        <i class="fa-solid fa-pen left-icon"></i>
-
-        <input
+    <input
         type="text"
         id="customWord"
-        placeholder="Enter a word (optional)">
+        placeholder="Enter your name or word">
 
-    </div>
+</div>
 
-    <!-- Password Type -->
+<div class="generator-buttons">
 
-   
     <button
-    type="button"
-    onclick="generatePassword()">
+        type="button"
+        onclick="generateCustomPassword()">
 
-        Generate Password
+        Generate From Name
 
     </button>
 
-    <div class="generated-box">
+    <button
+        type="button"
+        onclick="generateRandomPassword()">
 
-        <span id="generatedPassword">
-            Your generated password will appear here
-        </span>
+        Random Password
 
+    </button>
+
+</div>
+
+<div class="generated-box">
+
+    <span id="generatedPassword">
+        Generated Password Appears Here
+    </span>
+
+    <i class="fa-solid fa-copy copy-icon"
+       onclick="copyPassword()"></i>
+
+</div>
         <i class="fa-solid fa-copy copy-icon"
         onclick="copyPassword()"></i>
 
