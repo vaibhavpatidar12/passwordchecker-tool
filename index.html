@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Password Analyzer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Secure Login & Password Analyzer</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <h1><i class="fa-solid fa-lock"></i> Password Tool</h1>
-
-        <!-- Dark Mode Toggle -->
-        <i class="fa-solid fa-moon toggle-dark" id="darkModeToggle"></i>
+    <div class="project-title">
+        <h2>Secure Login System</h2>
+        <p>Password Strength Analyzer</p>
     </div>
 
-    <p class="subtitle">
-        Check password strength & estimate crack time
-    </p>
+    <form>
 
-    <!-- Input -->
-    <div class="input-group">
-        <input type="password" id="password" placeholder="Enter your password">
-        <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
-    </div>
+        <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" placeholder="Username or Email" required>
+        </div>
 
-    <!-- Strength Bar -->
-    <div class="strength-bar">
-        <div id="strength-fill"></div>
-    </div>
+        <div class="input-group">
+            <input type="password" id="password"
+            placeholder="Enter Password" required>
 
-    <p id="strength-text"></p>
-    <p id="crack-time"></p>
+            <i class="fa-solid fa-eye toggle-password"
+            id="togglePassword"></i>
+        </div>
+
+        <!-- Strength Bar -->
+        <div class="strength-bar">
+            <div id="strength-fill"></div>
+        </div>
+
+        <p id="strength-text"></p>
+        <p id="crack-time"></p>
+
+        <div class="options">
+            <label>
+                <input type="checkbox">
+                Remember Me
+            </label>
+
+            <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
+        </button>
+
+    </form>
 
     <hr>
 
-    <h3 class="section-title">Generate Secure Password</h3>
+    <h3>Generate Secure Password</h3>
 
-    <button onclick="generatePassword()">Generate Password</button>
+    <button onclick="generatePassword()">
+        Generate Password
+    </button>
 
     <div class="generated-box">
-        <p id="generatedPassword"></p>
-        <i class="fa-solid fa-copy copy-icon" onclick="copyPassword()"></i>
+        <span id="generatedPassword"></span>
+
+        <i class="fa-solid fa-copy copy-icon"
+        onclick="copyPassword()"></i>
     </div>
 
 </div>
