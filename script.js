@@ -1,10 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const passwordInput =
-    document.getElementById("password");
+        document.getElementById("password");
 
     const togglePassword =
-    document.getElementById("togglePassword");
+        document.getElementById("togglePassword");
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    /* SHOW / HIDE PASSWORD */
 
     togglePassword.addEventListener("click", () => {
 
@@ -13,22 +18,45 @@ document.addEventListener("DOMContentLoaded", () => {
             passwordInput.type = "text";
 
             togglePassword.classList.replace(
-            "fa-eye",
-            "fa-eye-slash");
+                "fa-eye",
+                "fa-eye-slash"
+            );
 
         }else{
 
             passwordInput.type = "password";
 
             togglePassword.classList.replace(
-            "fa-eye-slash",
-            "fa-eye");
+                "fa-eye-slash",
+                "fa-eye"
+            );
         }
     });
 
+    /* PASSWORD STRENGTH */
+
     passwordInput.addEventListener(
-    "input",
-    checkPassword);
+        "input",
+        checkPassword
+    );
+
+    /* THEME TOGGLE */
+
+    themeToggle.addEventListener("click", () => {
+
+        document.body.classList.toggle("light");
+
+        if(document.body.classList.contains("light")){
+
+            themeToggle.classList.remove("fa-moon");
+            themeToggle.classList.add("fa-sun");
+
+        }else{
+
+            themeToggle.classList.remove("fa-sun");
+            themeToggle.classList.add("fa-moon");
+        }
+    });
 
 });
 
@@ -36,55 +64,37 @@ document.addEventListener("DOMContentLoaded", () => {
 function checkPassword(){
 
     let password =
-    document.getElementById("password").value;
+        document.getElementById("password").value;
 
     let fill =
-    document.getElementById("strength-fill");
+        document.getElementById("strength-fill");
 
     let text =
-    document.getElementById("strength-text");
+        document.getElementById("strength-text");
 
     let score = 0;
 
-    if(password.length >= 8)
-        score += 25;
-
-    if(/[A-Z]/.test(password))
-        score += 25;
-
-    if(/[0-9]/.test(password))
-        score += 25;
-
-    if(/[^A-Za-z0-9]/.test(password))
-        score += 25;
+    if(password.length >= 8) score += 25;
+    if(/[A-Z]/.test(password)) score += 25;
+    if(/[0-9]/.test(password)) score += 25;
+    if(/[^A-Za-z0-9]/.test(password)) score += 25;
 
     fill.style.width = score + "%";
 
     if(score <= 25){
 
-        fill.style.background =
-        "#ef4444";
+        fill.style.background = "#ef4444";
+        text.innerHTML = "Password Strength: Weak";
 
-        text.innerHTML =
-        "Password Strength: Weak";
-    }
+    }else if(score <= 75){
 
-    else if(score <= 75){
+        fill.style.background = "#f59e0b";
+        text.innerHTML = "Password Strength: Medium";
 
-        fill.style.background =
-        "#f59e0b";
+    }else{
 
-        text.innerHTML =
-        "Password Strength: Medium";
-    }
-
-    else{
-
-        fill.style.background =
-        "#10B981";
-
-        text.innerHTML =
-        "Password Strength: Strong";
+        fill.style.background = "#22c55e";
+        text.innerHTML = "Password Strength: Strong";
     }
 }
 
@@ -92,32 +102,33 @@ function checkPassword(){
 function generatePassword(){
 
     const chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
 
     let password = "";
 
-    for(let i=0;i<12;i++){
+    for(let i = 0; i < 12; i++){
 
         password += chars.charAt(
-        Math.floor(
-        Math.random()*chars.length));
+            Math.floor(
+                Math.random() * chars.length
+            )
+        );
     }
 
     document.getElementById(
-    "generatedPassword")
-    .innerText = password;
+        "generatedPassword"
+    ).innerText = password;
 }
 
 
 function copyPassword(){
 
-    let password =
-    document.getElementById(
-    "generatedPassword")
-    .innerText;
+    const password =
+        document.getElementById(
+            "generatedPassword"
+        ).innerText;
 
-    navigator.clipboard.writeText(
-    password);
+    navigator.clipboard.writeText(password);
 
-    alert("Password Copied!");
+    alert("Password copied successfully!");
 }
