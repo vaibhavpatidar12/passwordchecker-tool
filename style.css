@@ -17,81 +17,84 @@ body{
 
     background:linear-gradient(
         135deg,
-        #0f172a,
-        #111827,
-        #1e293b);
+        #dbeafe,
+        #eff6ff,
+        #bfdbfe);
 
     transition:.4s;
 }
 
-/* LIGHT THEME */
+/* DARK MODE */
 
-body.light{
+body.dark{
 
     background:linear-gradient(
         135deg,
-        #e2e8f0,
-        #f8fafc,
-        #cbd5e1);
+        #0f172a,
+        #1e293b,
+        #334155);
 }
 
 /* CARD */
 
 .container{
 
-    width:500px;
+    width:520px;
     max-width:100%;
 
     padding:40px;
 
+    background:rgba(255,255,255,.95);
+
     border-radius:25px;
 
-    background:rgba(17,24,39,.95);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(20px);
-
-    color:white;
-
     box-shadow:
-    0 10px 40px rgba(0,0,0,.4);
+        0 10px 40px rgba(59,130,246,.15);
+
+    position:relative;
 
     transition:.4s;
 }
 
-body.light .container{
+body.dark .container{
 
-    background:white;
+    background:#111827;
 
-    color:#111827;
+    color:white;
+}
 
-    border:1px solid #cbd5e1;
+/* THEME BUTTON */
+
+.theme-toggle{
+
+    position:absolute;
+
+    top:20px;
+    right:20px;
+
+    width:45px;
+    height:45px;
+
+    background:#3b82f6;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    cursor:pointer;
 }
 
 /* HEADER */
 
 .project-title{
 
-    position:relative;
-
     text-align:center;
 
     margin-bottom:30px;
-}
-
-.theme-toggle{
-
-    position:absolute;
-
-    right:0;
-    top:0;
-
-    cursor:pointer;
-
-    font-size:22px;
-
-    color:#3b82f6;
 }
 
 .logo{
@@ -107,12 +110,17 @@ body.light .container{
 
     font-size:32px;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .project-title p{
 
-    color:#94a3b8;
+    color:#64748b;
+}
+
+body.dark .project-title p{
+
+    color:#cbd5e1;
 }
 
 /* INPUTS */
@@ -121,7 +129,7 @@ body.light .container{
 
     position:relative;
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .input-group input{
@@ -130,42 +138,31 @@ body.light .container{
 
     height:55px;
 
-    padding-left:50px;
-    padding-right:50px;
+    padding:0 50px;
+
+    border:2px solid #cbd5e1;
 
     border-radius:14px;
 
-    border:2px solid #334155;
-
-    background:#1f2937;
-
-    color:white;
+    background:#f8fafc;
 
     outline:none;
 
-    transition:.3s;
+    font-size:15px;
 }
 
-body.light .input-group input{
+body.dark .input-group input{
 
-    background:#f8fafc;
+    background:#1f2937;
 
-    color:#111827;
+    border:2px solid #374151;
 
-    border:2px solid #cbd5e1;
+    color:white;
 }
 
 .input-group input:focus{
 
     border-color:#3b82f6;
-
-    box-shadow:
-    0 0 10px rgba(59,130,246,.35);
-}
-
-.input-group input::placeholder{
-
-    color:#9ca3af;
 }
 
 /* ICONS */
@@ -204,20 +201,18 @@ body.light .input-group input{
 
     height:10px;
 
-    background:#334155;
+    background:#d1d5db;
 
     border-radius:20px;
 
     overflow:hidden;
-
-    margin-top:10px;
 }
 
 #strength-fill{
 
-    height:100%;
-
     width:0%;
+
+    height:100%;
 
     transition:.4s;
 }
@@ -237,13 +232,13 @@ button{
 
     width:100%;
 
-    padding:14px;
+    height:55px;
 
     border:none;
 
     border-radius:14px;
 
-    background:#3b82f6;
+    background:#60a5fa;
 
     color:white;
 
@@ -258,30 +253,23 @@ button{
 
 button:hover{
 
-    background:#2563eb;
-
-    transform:translateY(-2px);
+    background:#3b82f6;
 }
 
 /* DIVIDER */
 
 hr{
 
+    margin:30px 0;
+
     border:none;
 
     height:1px;
 
-    background:#334155;
-
-    margin:30px 0;
+    background:#d1d5db;
 }
 
 /* PASSWORD BOX */
-
-h3{
-
-    margin-bottom:15px;
-}
 
 .generated-box{
 
@@ -297,31 +285,29 @@ h3{
 
     border-radius:14px;
 
-    background:#1f2937;
-
-    border:1px solid #334155;
-}
-
-body.light .generated-box{
-
     background:#f8fafc;
 
     border:1px solid #cbd5e1;
 }
 
+body.dark .generated-box{
+
+    background:#1f2937;
+
+    border:1px solid #374151;
+}
+
 .copy-icon{
 
-    cursor:pointer;
-
     color:#3b82f6;
+
+    cursor:pointer;
 }
 
 #generatedPassword{
 
     word-break:break-all;
 }
-
-/* MOBILE */
 
 @media(max-width:600px){
 
